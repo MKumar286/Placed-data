@@ -12,14 +12,8 @@ background:#f4f6f9;
 padding:15px;
 }
 
-h1{
-text-align:center;
-}
-
-h3{
-text-align:center;
-margin-top:-10px;
-}
+h1{text-align:center;}
+h3{text-align:center;margin-top:-10px;}
 
 .controls{
 margin-bottom:15px;
@@ -37,19 +31,13 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-select option{
-font-size:15px;
-}
-
 .stats{
 margin:10px 0;
 font-weight:bold;
 font-size:16px;
 }
 
-.table-container{
-overflow-x:auto;
-}
+.table-container{overflow-x:auto;}
 
 table{
 border-collapse:collapse;
@@ -72,6 +60,20 @@ color:white;
 
 tr:nth-child(even){
 background:#f2f2f2;
+}
+
+.link-btn{
+background:#2c3e50;
+color:white;
+padding:5px 10px;
+border-radius:5px;
+text-decoration:none;
+font-size:12px;
+display:inline-block;
+}
+
+.link-btn:hover{
+background:#1a252f;
 }
 
 </style>
@@ -97,16 +99,15 @@ Total Placed Students : <span id="placedStudents">0</span>
 <select id="companyFilter"><option value="">All Companies</option></select>
 <select id="natureFilter"><option value="">Nature of the Company</option></select>
 <select id="internFilter"><option value="">Internship Type</option></select>
+<select id="genderFilter"><option value="">All Genders</option></select>
 
 </div>
 
 <div class="table-container">
-
 <table id="placementTable">
 <thead></thead>
 <tbody></tbody>
 </table>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
@@ -127,14 +128,10 @@ complete:function(results){
 
 allData = results.data.filter(row => Object.values(row).join("").trim() !== "");
 
-// ✅ Auto detect columns
 let headers = Object.keys(allData[0]);
 
 natureKey = headers.find(h => h.toLowerCase().includes("nature"));
 internKey = headers.find(h => h.toLowerCase().includes("paid"));
-
-console.log("Nature Column:", natureKey);
-console.log("Intern Column:", internKey);
 
 buildTable(allData);
 populateFilters(allData);
@@ -170,7 +167,32 @@ let tr=document.createElement("tr");
 
 headers.forEach(h=>{
 let td=document.createElement("td");
-td.innerText=row[h];
+
+let value = row[h] ? row[h].toString().trim() : "";
+
+if(value.includes("http")){
+
+    let a = document.createElement("a");
+    a.href = value;
+    a.target = "_blank";
+    a.className = "link-btn";
+
+    if(h.toLowerCase().includes("intern")){
+        a.innerText = "📄 Internship Letter";
+    }
+    else if(h.toLowerCase().includes("offer")){
+        a.innerText = "📄 Offer Letter";
+    }
+    else{
+        a.innerText = "📄 View";
+    }
+
+    td.appendChild(a);
+
+}else{
+    td.innerText = value;
+}
+
 tr.appendChild(td);
 });
 
@@ -189,23 +211,31 @@ let companies=[...new Set(data.map(d=>d["Company Placed"]))];
 let natures=[...new Set(data.map(d => (d[natureKey] || "").trim()).filter(v=>v))];
 let interns=[...new Set(data.map(d => (d[internKey] || "").trim()).filter(v=>v))];
 
+// ✅ Gender added
+let genders=[...new Set(data.map(d => (d["Gender"] || "").trim()).filter(v=>v))];
+
 let batchSelect=document.getElementById("batchFilter");
 let branchSelect=document.getElementById("branchFilter");
 let companySelect=document.getElementById("companyFilter");
 let natureSelect=document.getElementById("natureFilter");
 let internSelect=document.getElementById("internFilter");
+let genderSelect=document.getElementById("genderFilter");
 
 batchSelect.innerHTML='<option value="">All Batches</option>';
 branchSelect.innerHTML='<option value="">All Branches</option>';
 companySelect.innerHTML='<option value="">All Companies</option>';
 natureSelect.innerHTML='<option value="">Nature of the Company</option>';
-internSelect.innerHTML='<option value="">Internship type</option>';
+internSelect.innerHTML='<option value="">Internship Type</option>';
+genderSelect.innerHTML='<option value="">All Genders</option>';
 
-batches.forEach(b=> batchSelect.add(new Option(b,b)));
-branches.forEach(b=> branchSelect.add(new Option(b,b)));
-companies.forEach(c=> companySelect.add(new Option(c,c)));
-natures.forEach(n=> natureSelect.add(new Option(n,n)));
-interns.forEach(i=> internSelect.add(new Option(i,i)));
+batches.sort().forEach(b=> batchSelect.add(new Option(b,b)));
+branches.sort().forEach(b=> branchSelect.add(new Option(b,b)));
+companies.sort().forEach(c=> companySelect.add(new Option(c,c)));
+natures.sort().forEach(n=> natureSelect.add(new Option(n,n)));
+interns.sort().forEach(i=> internSelect.add(new Option(i,i)));
+
+// ✅ Populate gender
+genders.sort().forEach(g=> genderSelect.add(new Option(g,g)));
 
 }
 
@@ -232,6 +262,9 @@ let company=document.getElementById("companyFilter").value;
 let nature=document.getElementById("natureFilter").value;
 let intern=document.getElementById("internFilter").value;
 
+// ✅ Gender variable
+let gender=document.getElementById("genderFilter").value;
+
 let filtered=allData.filter(row=>{
 
 let text=JSON.stringify(row).toLowerCase();
@@ -241,7 +274,10 @@ return text.includes(search) &&
 (branch=="" || row["Branch"]==branch) &&
 (company=="" || row["Company Placed"]==company) &&
 (nature=="" || (row[natureKey] || "").trim()==nature) &&
-(intern=="" || (row[internKey] || "").trim()==intern);
+(intern=="" || (row[internKey] || "").trim()==intern) &&
+
+// ✅ Gender condition
+(gender=="" || (row["Gender"] || "").trim()==gender);
 
 });
 
@@ -256,6 +292,9 @@ document.getElementById("branchFilter").addEventListener("change",applyFilters);
 document.getElementById("companyFilter").addEventListener("change",applyFilters);
 document.getElementById("natureFilter").addEventListener("change",applyFilters);
 document.getElementById("internFilter").addEventListener("change",applyFilters);
+
+// ✅ Gender event
+document.getElementById("genderFilter").addEventListener("change",applyFilters);
 
 </script>
 
