@@ -56,8 +56,6 @@ background:linear-gradient(
 
 background-size:300% 300%;
 animation:headingGlow 6s ease infinite;
-
-text-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
 
 h3{
@@ -111,6 +109,7 @@ padding:15px;
 border-radius:14px;
 backdrop-filter:blur(10px);
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
+border:1px solid rgba(255,255,255,0.15);
 }
 
 /* Controls */
@@ -125,6 +124,7 @@ padding:18px;
 border-radius:14px;
 backdrop-filter:blur(10px);
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
+border:1px solid rgba(255,255,255,0.15);
 }
 
 input, select{
@@ -133,7 +133,7 @@ font-size:15px;
 min-width:180px;
 height:44px;
 border-radius:8px;
-border:none;
+border:1px solid rgba(255,255,255,0.2);
 outline:none;
 background:rgba(255,255,255,0.92);
 transition:0.3s;
@@ -143,52 +143,72 @@ input:focus,
 select:focus{
 transform:scale(1.02);
 box-shadow:0 0 10px rgba(255,255,255,0.5);
+border:1px solid #00c6ff;
 }
 
 /* Table */
 
 .table-container{
 overflow-x:auto;
-border-radius:14px;
-box-shadow:0 5px 20px rgba(0,0,0,0.25);
+border-radius:16px;
+box-shadow:0 8px 25px rgba(0,0,0,0.25);
+border:2px solid rgba(255,255,255,0.15);
 }
 
 table{
 border-collapse:collapse;
 width:100%;
-background:rgba(255,255,255,0.95);
+background:rgba(255,255,255,0.97);
 overflow:hidden;
+border-radius:16px;
+
+box-shadow:
+0 0 12px rgba(0,198,255,0.15),
+0 0 25px rgba(0,114,255,0.08);
 }
 
+/* Premium Borders */
+
 th,td{
-border:1px solid #dcdcdc;
-padding:10px;
+border:1px solid rgba(16,37,66,0.12);
+padding:11px;
 font-size:13px;
 text-align:center;
 white-space:nowrap;
 }
 
+/* Header */
+
 th{
-background:#102542;
+background:linear-gradient(135deg,#141e30,#243b55);
 color:white;
 position:sticky;
 top:0;
 z-index:2;
+border-bottom:2px solid #00c6ff;
 }
+
+/* Row Colors */
 
 tr:nth-child(even){
-background:#f4f6f9;
+background:rgba(0,198,255,0.04);
 }
 
+tr:nth-child(odd){
+background:rgba(255,255,255,0.96);
+}
+
+/* Hover Effect */
+
 tr:hover{
-background:#dfefff;
+background:rgba(0,198,255,0.12);
 transition:0.3s;
 }
 
 /* Buttons */
 
 .link-btn{
-background:#102542;
+background:linear-gradient(135deg,#141e30,#243b55);
 color:white;
 padding:6px 12px;
 border-radius:6px;
@@ -196,10 +216,11 @@ text-decoration:none;
 font-size:12px;
 display:inline-block;
 transition:0.3s;
+border:1px solid rgba(255,255,255,0.15);
 }
 
 .link-btn:hover{
-background:#1d4e89;
+background:linear-gradient(135deg,#0072ff,#00c6ff);
 transform:scale(1.05);
 }
 
@@ -209,6 +230,10 @@ transform:scale(1.05);
 
 h1{
 font-size:28px;
+}
+
+h3{
+font-size:18px;
 }
 
 .controls{
@@ -328,7 +353,7 @@ tbody.innerHTML="";
 
 if(data.length===0){
 
-tbody.innerHTML=
+tbody.innerHTML =
 "<tr><td colspan='20'>No Records Found</td></tr>";
 
 return;
@@ -503,15 +528,10 @@ let text=JSON.stringify(row).toLowerCase();
 return text.includes(search) &&
 
 (batch=="" || row["Batch"]==batch) &&
-
 (branch=="" || row["Branch"]==branch) &&
-
 (company=="" || row["Company Placed"]==company) &&
-
 (nature=="" || (row[natureKey] || "").trim()==nature) &&
-
 (intern=="" || (row[internKey] || "").trim()==intern) &&
-
 (gender=="" || (row["Gender"] || "").trim()==gender);
 
 });
