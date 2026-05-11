@@ -35,20 +35,68 @@ background-position:0% 50%;
 }
 }
 
+/* Gradient Heading */
+
 h1{
 text-align:center;
-color:white;
-font-size:36px;
+font-size:38px;
 margin-bottom:10px;
-text-shadow:0 3px 8px rgba(0,0,0,0.4);
+font-weight:bold;
+
+background:linear-gradient(
+90deg,
+#ff6a00,
+#ee0979,
+#00c6ff,
+#0072ff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+background-size:300% 300%;
+animation:headingGlow 6s ease infinite;
+
+text-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
 
 h3{
 text-align:center;
-color:#f1f1f1;
 margin-bottom:25px;
-font-weight:normal;
-text-shadow:0 2px 5px rgba(0,0,0,0.3);
+font-weight:bold;
+font-size:22px;
+
+background:linear-gradient(
+90deg,
+#00f260,
+#0575e6,
+#8e2de2,
+#ff512f
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+background-size:300% 300%;
+animation:headingGlow 8s ease infinite;
+}
+
+/* Heading Animation */
+
+@keyframes headingGlow{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
 }
 
 /* Stats */
