@@ -4,6 +4,8 @@
 
 <title>MGIT Placement Portal</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 *{
@@ -14,135 +16,144 @@ box-sizing:border-box;
 
 body{
 font-family:Arial, sans-serif;
-padding:20px;
-min-height:100vh;
-
-background:linear-gradient(
--45deg,
-#0f2027,
-#203a43,
-#2c5364,
-#1e3c72
-);
-
+padding:15px;
+overflow-x:hidden;
+color:white;
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c1c3c);
 background-size:400% 400%;
-
-animation:gradientBG 12s ease infinite;
+animation:bgMove 15s ease infinite;
+min-height:100vh;
 }
 
 /* Animated Background */
 
-@keyframes gradientBG{
-
-0%{
-background-position:0% 50%;
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-50%{
-background-position:100% 50%;
+/* Floating Glow */
+
+body::before{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:rgba(0,198,255,0.15);
+border-radius:50%;
+top:-120px;
+left:-120px;
+filter:blur(100px);
+animation:float1 10s infinite alternate;
+z-index:-1;
 }
 
-100%{
-background-position:0% 50%;
+body::after{
+content:"";
+position:fixed;
+width:400px;
+height:400px;
+background:rgba(255,0,150,0.15);
+border-radius:50%;
+bottom:-100px;
+right:-100px;
+filter:blur(100px);
+animation:float2 12s infinite alternate;
+z-index:-1;
 }
 
+@keyframes float1{
+from{transform:translateY(0px);}
+to{transform:translateY(80px);}
 }
 
-/* Gradient Headings */
+@keyframes float2{
+from{transform:translateX(0px);}
+to{transform:translateX(-80px);}
+}
 
-h1{
+/* HEADER SECTION */
+
+.header-box{
+
+background:linear-gradient(135deg,#ff512f,#dd2476);
+
+padding:22px;
+
+border-radius:18px;
+
+margin-bottom:20px;
+
+box-shadow:0 6px 20px rgba(0,0,0,0.35);
+
+border:1px solid rgba(255,255,255,0.15);
 
 text-align:center;
 
-font-size:38px;
+}
 
-margin-bottom:10px;
+/* Headings */
+
+h1{
+
+font-size:38px;
 
 font-weight:bold;
 
-background:linear-gradient(
-90deg,
-#ff6a00,
-#ee0979,
-#00c6ff,
-#0072ff
-);
+background:linear-gradient(90deg,#ffffff,#ffe082,#ffffff);
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-background-size:300% 300%;
+margin-bottom:8px;
 
-animation:headingGlow 6s ease infinite;
+letter-spacing:1px;
 
 }
 
 h3{
 
-text-align:center;
+font-size:18px;
 
-margin-bottom:25px;
+font-weight:600;
 
-font-weight:bold;
-
-font-size:22px;
-
-background:linear-gradient(
-90deg,
-#00f260,
-#0575e6,
-#8e2de2,
-#ff512f
-);
+background:linear-gradient(90deg,#b2ff59,#00e5ff);
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-background-size:300% 300%;
-
-animation:headingGlow 8s ease infinite;
-
 }
 
-@keyframes headingGlow{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-
-}
-
-/* Stats */
+/* COUNT SECTION */
 
 .stats{
 
-margin:15px 0;
+margin:20px 0;
 
 font-weight:bold;
 
 font-size:18px;
 
-color:white;
+display:flex;
 
-background:rgba(255,255,255,0.12);
+justify-content:center;
 
-padding:15px;
+gap:25px;
 
-border-radius:14px;
+flex-wrap:wrap;
 
-backdrop-filter:blur(10px);
+padding:18px;
 
-box-shadow:0 4px 15px rgba(0,0,0,0.2);
+background:linear-gradient(135deg,#11998e,#38ef7d);
+
+border-radius:16px;
+
+box-shadow:0 4px 15px rgba(0,0,0,0.25);
 
 border:1px solid rgba(255,255,255,0.15);
+
+color:white;
 
 }
 
@@ -171,6 +182,7 @@ box-shadow:0 4px 15px rgba(0,0,0,0.2);
 border:1px solid rgba(255,255,255,0.15);
 
 overflow-x:auto;
+
 overflow-y:hidden;
 
 scroll-behavior:smooth;
@@ -234,43 +246,103 @@ background:linear-gradient(90deg,#00c6ff,#0072ff);
 border-radius:10px;
 }
 
-/* Table */
+/* TABLE CONTAINER */
 
 .table-container{
 
+width:100%;
+
 overflow-x:auto;
 
-border-radius:16px;
+overflow-y:hidden;
 
-box-shadow:0 8px 25px rgba(0,0,0,0.25);
+border-radius:18px;
 
-border:2px solid rgba(255,255,255,0.15);
+box-shadow:0 8px 25px rgba(0,0,0,0.35);
+
+scroll-behavior:smooth;
+
+background:rgba(255,255,255,0.05);
+
+padding-bottom:6px;
 
 }
+
+/* Horizontal Scrollbar */
+
+.table-container::-webkit-scrollbar{
+
+height:10px;
+
+}
+
+.table-container::-webkit-scrollbar-track{
+
+background:rgba(255,255,255,0.08);
+
+border-radius:10px;
+
+}
+
+.table-container::-webkit-scrollbar-thumb{
+
+background:linear-gradient(90deg,#ff512f,#dd2476);
+
+border-radius:10px;
+
+}
+
+.table-container::-webkit-scrollbar-thumb:hover{
+
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+
+}
+
+/* TABLE */
 
 table{
 
 border-collapse:collapse;
 
-width:100%;
+min-width:1600px;
 
-background:rgba(255,255,255,0.97);
+width:max-content;
+
+background:#ffffff;
+
+color:#222;
+
+border-radius:18px;
 
 overflow:hidden;
 
-border-radius:16px;
+}
 
-box-shadow:
-0 0 12px rgba(0,198,255,0.15),
-0 0 25px rgba(0,114,255,0.08);
+/* Table Header */
+
+th{
+
+padding:14px;
+
+font-size:15px;
+
+font-weight:bold;
+
+text-align:center;
+
+background:linear-gradient(135deg,#141e30,#243b55);
+
+color:#ffffff;
+
+border:1px solid rgba(255,255,255,0.12);
+
+white-space:nowrap;
 
 }
 
-/* Premium Borders */
+/* Table Data */
 
-th,td{
-
-border:1px solid rgba(16,37,66,0.12);
+td{
 
 padding:12px;
 
@@ -282,45 +354,29 @@ text-align:center;
 
 white-space:nowrap;
 
-}
-
-/* Header */
-
-th{
-
-background:linear-gradient(
-135deg,
-#141e30,
-#243b55
-);
-
-color:white;
-
-position:sticky;
-
-top:0;
-
-z-index:2;
-
-border-bottom:2px solid #00c6ff;
+border:1px solid rgba(16,37,66,0.12);
 
 }
 
-/* Rows */
+/* Alternate Rows */
 
 tr:nth-child(even){
-background:rgba(0,198,255,0.04);
+
+background:#eef5ff;
+
 }
 
 tr:nth-child(odd){
-background:rgba(255,255,255,0.96);
+
+background:#ffffff;
+
 }
 
-/* Hover */
+/* Hover Effect */
 
-tr:hover{
+tbody tr:hover{
 
-background:rgba(0,198,255,0.12);
+background:#d9f3ff;
 
 transition:0.3s;
 
@@ -330,57 +386,60 @@ transition:0.3s;
 
 .link-btn{
 
-background:linear-gradient(
-135deg,
-#141e30,
-#243b55
-);
+background:linear-gradient(135deg,#667eea,#764ba2);
 
 color:white;
 
-padding:6px 12px;
+padding:7px 14px;
 
-border-radius:6px;
+border-radius:8px;
 
 text-decoration:none;
 
 font-size:12px;
 
+font-weight:bold;
+
 display:inline-block;
 
 transition:0.3s;
 
-border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
 
 }
 
 .link-btn:hover{
 
-background:linear-gradient(
-135deg,
-#0072ff,
-#00c6ff
-);
+transform:scale(1.06);
 
-transform:scale(1.05);
+background:linear-gradient(135deg,#43cea2,#185a9d);
 
 }
 
-/* Mobile */
+/* MOBILE */
 
 @media(max-width:768px){
+
+body{
+padding:10px;
+}
 
 h1{
 font-size:28px;
 }
 
 h3{
-font-size:18px;
+font-size:15px;
 }
 
 .stats{
-font-size:16px;
-text-align:center;
+
+font-size:15px;
+
+gap:12px;
+
+padding:14px;
+
 }
 
 .controls{
@@ -403,11 +462,25 @@ font-size:14px;
 
 }
 
-th,td{
+th{
+
+font-size:13px;
+
+padding:11px;
+
+}
+
+td{
 
 font-size:14px;
 
 padding:10px;
+
+}
+
+table{
+
+min-width:1400px;
 
 }
 
@@ -419,53 +492,43 @@ padding:10px;
 
 <body>
 
+<div class="header-box">
+
 <h1>MGIT Placement Records</h1>
 
 <h3>Academic Year 2025 - 2026</h3>
 
+</div>
+
 <div class="stats">
 
+<div>
 Total Offers :
 <span id="totalOffers">0</span>
+</div>
 
-|
-
+<div>
 Total Placed Students :
 <span id="placedStudents">0</span>
+</div>
 
 </div>
 
 <div class="controls">
 
-<input
-type="text"
-id="search"
-placeholder="Search student / roll / company"
->
+<input type="text" id="search" placeholder="Search student / roll / company">
 
-<select id="batchFilter">
-<option value="">All Batches</option>
-</select>
+<select id="batchFilter"><option value="">All Batches</option></select>
 
-<select id="branchFilter">
-<option value="">All Branches</option>
-</select>
+<select id="branchFilter"><option value="">All Branches</option></select>
 
-<select id="companyFilter">
-<option value="">All Companies</option>
-</select>
+<select id="companyFilter"><option value="">All Companies</option></select>
 
-<select id="natureFilter">
-<option value="">Nature of the Company</option>
-</select>
+<select id="natureFilter"><option value="">Nature of the Company</option></select>
 
-<select id="internFilter">
-<option value="">Internship Type</option>
-</select>
+<select id="internFilter"><option value="">Internship Type</option></select>
 
-<select id="genderFilter">
-<option value="">All Genders</option>
-</select>
+<select id="genderFilter"><option value="">All Genders</option></select>
 
 </div>
 
@@ -485,13 +548,11 @@ placeholder="Search student / roll / company"
 
 <script>
 
-const csvURL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSlQ0WjFcZaI2eiKVtAqynVqs3H82MznXaV15n-qLjsDv6QL75g_7sQAhm0n6ZtiiDVKIB0MkuTNQ64/pub?gid=492329818&single=true&output=csv";
+const csvURL="YOUR_GOOGLE_SHEET_CSV_LINK_HERE";
 
 let allData=[];
 
 let natureKey="";
-
 let internKey="";
 
 Papa.parse(csvURL,{
@@ -502,19 +563,13 @@ header:true,
 
 complete:function(results){
 
-allData = results.data.filter(row =>
-Object.values(row).join("").trim() !== ""
-);
+allData = results.data.filter(row => Object.values(row).join("").trim() !== "");
 
 let headers = Object.keys(allData[0]);
 
-natureKey = headers.find(h =>
-h.toLowerCase().includes("nature")
-);
+natureKey = headers.find(h => h.toLowerCase().includes("nature"));
 
-internKey = headers.find(h =>
-h.toLowerCase().includes("paid")
-);
+internKey = headers.find(h => h.toLowerCase().includes("paid"));
 
 buildTable(allData);
 
@@ -528,34 +583,23 @@ updateStats(allData);
 
 function buildTable(data){
 
-let thead =
-document.querySelector("#placementTable thead");
+let thead=document.querySelector("#placementTable thead");
 
-let tbody =
-document.querySelector("#placementTable tbody");
+let tbody=document.querySelector("#placementTable tbody");
 
 thead.innerHTML="";
 
 tbody.innerHTML="";
 
-if(data.length===0){
+let headers=Object.keys(data[0]);
 
-tbody.innerHTML =
-"<tr><td colspan='20'>No Records Found</td></tr>";
-
-return;
-
-}
-
-let headers = Object.keys(data[0]);
-
-let tr = document.createElement("tr");
+let tr=document.createElement("tr");
 
 headers.forEach(h=>{
 
-let th = document.createElement("th");
+let th=document.createElement("th");
 
-th.innerText = h;
+th.innerText=h;
 
 tr.appendChild(th);
 
@@ -565,14 +609,13 @@ thead.appendChild(tr);
 
 data.forEach(row=>{
 
-let tr = document.createElement("tr");
+let tr=document.createElement("tr");
 
 headers.forEach(h=>{
 
-let td = document.createElement("td");
+let td=document.createElement("td");
 
-let value =
-row[h] ? row[h].toString().trim() : "";
+let value = row[h] ? row[h].toString().trim() : "";
 
 if(value.includes("http")){
 
@@ -589,11 +632,13 @@ if(h.toLowerCase().includes("intern")){
 a.innerText = "📄 Internship Letter";
 
 }
+
 else if(h.toLowerCase().includes("offer")){
 
 a.innerText = "📄 Offer Letter";
 
 }
+
 else{
 
 a.innerText = "📄 View";
@@ -603,6 +648,7 @@ a.innerText = "📄 View";
 td.appendChild(a);
 
 }
+
 else{
 
 td.innerText = value;
@@ -618,191 +664,6 @@ tbody.appendChild(tr);
 });
 
 }
-
-function populateFilters(data){
-
-let batches =
-[...new Set(data.map(d=>d["Batch"]))];
-
-let branches =
-[...new Set(data.map(d=>d["Branch"]))];
-
-let companies =
-[...new Set(data.map(d=>d["Company Placed"]))];
-
-let natures =
-[...new Set(
-data.map(d => (d[natureKey] || "").trim())
-.filter(v=>v)
-)];
-
-let interns =
-[...new Set(
-data.map(d => (d[internKey] || "").trim())
-.filter(v=>v)
-)];
-
-let genders =
-[...new Set(
-data.map(d => (d["Gender"] || "").trim())
-.filter(v=>v)
-)];
-
-let batchSelect =
-document.getElementById("batchFilter");
-
-let branchSelect =
-document.getElementById("branchFilter");
-
-let companySelect =
-document.getElementById("companyFilter");
-
-let natureSelect =
-document.getElementById("natureFilter");
-
-let internSelect =
-document.getElementById("internFilter");
-
-let genderSelect =
-document.getElementById("genderFilter");
-
-batchSelect.innerHTML =
-'<option value="">All Batches</option>';
-
-branchSelect.innerHTML =
-'<option value="">All Branches</option>';
-
-companySelect.innerHTML =
-'<option value="">All Companies</option>';
-
-natureSelect.innerHTML =
-'<option value="">Nature of the Company</option>';
-
-internSelect.innerHTML =
-'<option value="">Internship Type</option>';
-
-genderSelect.innerHTML =
-'<option value="">All Genders</option>';
-
-batches.sort().forEach(b=>
-batchSelect.add(new Option(b,b))
-);
-
-branches.sort().forEach(b=>
-branchSelect.add(new Option(b,b))
-);
-
-companies.sort().forEach(c=>
-companySelect.add(new Option(c,c))
-);
-
-natures.sort().forEach(n=>
-natureSelect.add(new Option(n,n))
-);
-
-interns.sort().forEach(i=>
-internSelect.add(new Option(i,i))
-);
-
-genders.sort().forEach(g=>
-genderSelect.add(new Option(g,g))
-);
-
-}
-
-function updateStats(data){
-
-document.getElementById("totalOffers").innerText =
-data.length;
-
-let uniqueStudents = new Set();
-
-data.forEach(row=>{
-
-uniqueStudents.add(row["Roll Number"]);
-
-});
-
-document.getElementById("placedStudents").innerText =
-uniqueStudents.size;
-
-}
-
-function applyFilters(){
-
-let search =
-document.getElementById("search")
-.value.toLowerCase();
-
-let batch =
-document.getElementById("batchFilter").value;
-
-let branch =
-document.getElementById("branchFilter").value;
-
-let company =
-document.getElementById("companyFilter").value;
-
-let nature =
-document.getElementById("natureFilter").value;
-
-let intern =
-document.getElementById("internFilter").value;
-
-let gender =
-document.getElementById("genderFilter").value;
-
-let filtered = allData.filter(row=>{
-
-let text =
-JSON.stringify(row).toLowerCase();
-
-return text.includes(search)
-
-&& (batch=="" || row["Batch"]==batch)
-
-&& (branch=="" || row["Branch"]==branch)
-
-&& (company=="" ||
-row["Company Placed"]==company)
-
-&& (nature=="" ||
-(row[natureKey] || "").trim()==nature)
-
-&& (intern=="" ||
-(row[internKey] || "").trim()==intern)
-
-&& (gender=="" ||
-(row["Gender"] || "").trim()==gender);
-
-});
-
-buildTable(filtered);
-
-updateStats(filtered);
-
-}
-
-document.getElementById("search")
-.addEventListener("keyup",applyFilters);
-
-document.getElementById("batchFilter")
-.addEventListener("change",applyFilters);
-
-document.getElementById("branchFilter")
-.addEventListener("change",applyFilters);
-
-document.getElementById("companyFilter")
-.addEventListener("change",applyFilters);
-
-document.getElementById("natureFilter")
-.addEventListener("change",applyFilters);
-
-document.getElementById("internFilter")
-.addEventListener("change",applyFilters);
-
-document.getElementById("genderFilter")
-.addEventListener("change",applyFilters);
 
 </script>
 
