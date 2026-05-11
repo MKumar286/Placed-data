@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MGIT Placement Records</title>
+<title>MGIT Placement Portal</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
-/* ANIMATED BACKGROUND */
+/* BODY */
 
 body{
 
+font-family:Arial,sans-serif;
+
 margin:0;
 padding:20px;
-
-font-family:Arial,sans-serif;
 
 background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c1c1c);
 
@@ -23,13 +23,11 @@ background-size:400% 400%;
 
 animation:bgAnimation 15s ease infinite;
 
-color:#fff;
-
 overflow-x:hidden;
 
 }
 
-/* BACKGROUND ANIMATION */
+/* ANIMATION */
 
 @keyframes bgAnimation{
 
@@ -57,19 +55,19 @@ padding:28px 20px;
 
 border-radius:22px;
 
-margin-bottom:25px;
+margin-bottom:22px;
 
 text-align:center;
 
 box-shadow:0 10px 25px rgba(0,0,0,0.35);
 
-border:2px solid rgba(255,255,255,0.12);
+border:2px solid rgba(255,255,255,0.1);
 
 }
 
-/* MAIN HEADING */
-
 .header-section h1{
+
+margin:0;
 
 font-size:42px;
 
@@ -77,21 +75,15 @@ font-weight:800;
 
 color:#ffffff;
 
-margin:0;
-
 letter-spacing:1px;
-
-text-shadow:0 3px 10px rgba(0,0,0,0.35);
 
 }
 
-/* SUB HEADING */
+.header-section h3{
 
-.header-section p{
+margin-top:10px;
 
-margin-top:8px;
-
-font-size:20px;
+font-size:22px;
 
 font-weight:600;
 
@@ -99,9 +91,9 @@ color:#ffffff;
 
 }
 
-/* COUNT SECTION */
+/* STATS SECTION */
 
-.count-section{
+.stats{
 
 display:flex;
 
@@ -109,13 +101,13 @@ gap:20px;
 
 flex-wrap:wrap;
 
-margin-bottom:25px;
+margin-bottom:22px;
 
 }
 
-/* COUNT CARDS */
+/* STAT BOX */
 
-.count-card{
+.stat-box{
 
 flex:1;
 
@@ -127,7 +119,7 @@ border-radius:18px;
 
 text-align:center;
 
-color:#fff;
+color:white;
 
 font-weight:bold;
 
@@ -135,23 +127,35 @@ box-shadow:0 8px 20px rgba(0,0,0,0.3);
 
 }
 
-/* DIFFERENT CARD COLORS */
+/* DIFFERENT COLORS */
 
-.count-card:nth-child(1){
+.stat-box:nth-child(1){
 
 background:linear-gradient(135deg,#ff512f,#dd2476);
 
 }
 
-.count-card:nth-child(2){
+.stat-box:nth-child(2){
 
 background:linear-gradient(135deg,#11998e,#38ef7d);
 
 }
 
-.count-card:nth-child(3){
+/* STAT TEXT */
 
-background:linear-gradient(135deg,#fc4a1a,#f7b733);
+.stat-title{
+
+font-size:18px;
+
+margin-bottom:10px;
+
+}
+
+.stat-value{
+
+font-size:34px;
+
+font-weight:bold;
 
 }
 
@@ -167,81 +171,29 @@ flex-wrap:nowrap;
 
 gap:10px;
 
+overflow-x:auto;
+
+overflow-y:hidden;
+
+padding:15px;
+
+border-radius:15px;
+
 background:rgba(255,255,255,0.12);
-
-padding:16px;
-
-border-radius:14px;
 
 backdrop-filter:blur(10px);
 
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
 
-border:1px solid rgba(255,255,255,0.15);
-
-overflow-x:auto;
-
-overflow-y:hidden;
-
 scroll-behavior:smooth;
 
 }
 
-/* FILTER INPUTS */
-
-.controls input,
-.controls select{
-
-flex:0 0 auto;
-
-width:180px;
-
-min-width:180px;
-
-height:44px;
-
-padding:10px 12px;
-
-font-size:14px;
-
-border-radius:8px;
-
-border:1px solid rgba(255,255,255,0.2);
-
-outline:none;
-
-background:rgba(255,255,255,0.92);
-
-transition:0.3s;
-
-}
-
-/* FILTER FOCUS */
-
-.controls input:focus,
-.controls select:focus{
-
-transform:scale(1.02);
-
-box-shadow:0 0 10px rgba(255,255,255,0.5);
-
-border:1px solid #00c6ff;
-
-}
-
-/* FILTER SCROLLBAR */
+/* SCROLLBAR */
 
 .controls::-webkit-scrollbar{
 
 height:7px;
-
-}
-
-.controls::-webkit-scrollbar-track{
-
-background:rgba(255,255,255,0.08);
-
-border-radius:10px;
 
 }
 
@@ -253,11 +205,36 @@ border-radius:10px;
 
 }
 
+/* INPUTS */
+
+.controls input,
+.controls select{
+
+flex:0 0 auto;
+
+padding:10px;
+
+font-size:14px;
+
+width:180px;
+
+min-width:180px;
+
+height:44px;
+
+border-radius:8px;
+
+border:1px solid rgba(255,255,255,0.25);
+
+outline:none;
+
+background:rgba(255,255,255,0.95);
+
+}
+
 /* TABLE CONTAINER */
 
 .table-container{
-
-width:100%;
 
 overflow-x:auto;
 
@@ -267,9 +244,7 @@ border-radius:18px;
 
 box-shadow:0 8px 25px rgba(0,0,0,0.35);
 
-scroll-behavior:smooth;
-
-background:rgba(255,255,255,0.05);
+background:white;
 
 padding-bottom:6px;
 
@@ -285,7 +260,7 @@ height:10px;
 
 .table-container::-webkit-scrollbar-track{
 
-background:rgba(255,255,255,0.08);
+background:#d9d9d9;
 
 border-radius:10px;
 
@@ -309,23 +284,17 @@ min-width:1600px;
 
 width:max-content;
 
-background:#ffffff;
-
-color:#222;
-
-border-radius:18px;
-
-overflow:hidden;
+background:white;
 
 }
 
-/* TABLE HEADER */
+/* TABLE HEAD */
 
 th{
 
 background:linear-gradient(135deg,#141e30,#243b55);
 
-color:#fff;
+color:white;
 
 padding:14px;
 
@@ -351,25 +320,53 @@ white-space:nowrap;
 
 }
 
-/* TABLE ROW COLORS */
+/* ROW COLORS */
 
-tbody tr:nth-child(even){
+tr:nth-child(even){
 
 background:#f5f9ff;
 
 }
 
-tbody tr:nth-child(odd){
+tr:nth-child(odd){
 
 background:#ffffff;
 
 }
 
-tbody tr:hover{
+tr:hover{
 
 background:#dcecff;
 
 transition:0.3s;
+
+}
+
+/* LINKS */
+
+.link-btn{
+
+background:linear-gradient(135deg,#141e30,#243b55);
+
+color:white;
+
+padding:6px 12px;
+
+border-radius:6px;
+
+text-decoration:none;
+
+font-size:12px;
+
+display:inline-block;
+
+transition:0.3s;
+
+}
+
+.link-btn:hover{
+
+transform:scale(1.05);
 
 }
 
@@ -383,9 +380,9 @@ font-size:30px;
 
 }
 
-.header-section p{
+.header-section h3{
 
-font-size:16px;
+font-size:18px;
 
 }
 
@@ -410,7 +407,7 @@ font-size:14px;
 
 }
 
-.count-section{
+.stats{
 
 flex-direction:column;
 
@@ -419,6 +416,7 @@ flex-direction:column;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -429,35 +427,27 @@ flex-direction:column;
 
 <h1>MGIT Placement Records</h1>
 
-<p>Academic Year 2025 - 2026</p>
+<h3>Academic Year 2025 - 2026</h3>
 
 </div>
 
-<!-- COUNT SECTION -->
+<!-- STATS -->
 
-<div class="count-section">
+<div class="stats">
 
-<div class="count-card">
+<div class="stat-box">
 
-<h2>1250</h2>
+<div class="stat-title">Total Offers</div>
 
-<p>Total Offers</p>
-
-</div>
-
-<div class="count-card">
-
-<h2>820</h2>
-
-<p>Placed Students</p>
+<div class="stat-value" id="totalOffers">0</div>
 
 </div>
 
-<div class="count-card">
+<div class="stat-box">
 
-<h2>150</h2>
+<div class="stat-title">Placed Students</div>
 
-<p>Companies Visited</p>
+<div class="stat-value" id="placedStudents">0</div>
 
 </div>
 
@@ -467,28 +457,19 @@ flex-direction:column;
 
 <div class="controls">
 
-<input type="text" placeholder="Search Student">
+<input type="text" id="search" placeholder="Search student / roll / company">
 
-<select>
-<option>Branch</option>
-<option>CSE</option>
-<option>ECE</option>
-<option>EEE</option>
-<option>MECH</option>
-</select>
+<select id="batchFilter"><option value="">All Batches</option></select>
 
-<select>
-<option>Company</option>
-<option>TCS</option>
-<option>Infosys</option>
-<option>Accenture</option>
-</select>
+<select id="branchFilter"><option value="">All Branches</option></select>
 
-<select>
-<option>Year</option>
-<option>2025</option>
-<option>2026</option>
-</select>
+<select id="companyFilter"><option value="">All Companies</option></select>
+
+<select id="natureFilter"><option value="">Nature of the Company</option></select>
+
+<select id="internFilter"><option value="">Internship Type</option></select>
+
+<select id="genderFilter"><option value="">All Genders</option></select>
 
 </div>
 
@@ -496,67 +477,281 @@ flex-direction:column;
 
 <div class="table-container">
 
-<table>
+<table id="placementTable">
 
-<thead>
+<thead></thead>
 
-<tr>
-
-<th>S.No</th>
-<th>Student Name</th>
-<th>Roll Number</th>
-<th>Branch</th>
-<th>Company</th>
-<th>Package</th>
-<th>Status</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>1</td>
-<td>Rahul</td>
-<td>22991A0001</td>
-<td>CSE</td>
-<td>TCS</td>
-<td>5 LPA</td>
-<td>Placed</td>
-
-</tr>
-
-<tr>
-
-<td>2</td>
-<td>Teja</td>
-<td>22991A0002</td>
-<td>ECE</td>
-<td>Infosys</td>
-<td>4.5 LPA</td>
-<td>Placed</td>
-
-</tr>
-
-<tr>
-
-<td>3</td>
-<td>Kiran</td>
-<td>22991A0003</td>
-<td>EEE</td>
-<td>Accenture</td>
-<td>6 LPA</td>
-<td>Placed</td>
-
-</tr>
-
-</tbody>
+<tbody></tbody>
 
 </table>
 
 </div>
+
+<!-- PAPAPARSE -->
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+<script>
+
+const csvURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlQ0WjFcZaI2eiKVtAqynVqs3H82MznXaV15n-qLjsDv6QL75g_7sQAhm0n6ZtiiDVKIB0MkuTNQ64/pub?gid=492329818&single=true&output=csv";
+
+let allData=[];
+
+let natureKey="";
+let internKey="";
+
+Papa.parse(csvURL,{
+
+download:true,
+
+header:true,
+
+complete:function(results){
+
+allData = results.data.filter(row => Object.values(row).join("").trim() !== "");
+
+if(allData.length===0){
+
+alert("No Data Loaded");
+
+return;
+
+}
+
+let headers = Object.keys(allData[0]);
+
+natureKey = headers.find(h => h.toLowerCase().includes("nature"));
+
+internKey = headers.find(h => h.toLowerCase().includes("paid"));
+
+buildTable(allData);
+
+populateFilters(allData);
+
+updateStats(allData);
+
+}
+
+});
+
+/* BUILD TABLE */
+
+function buildTable(data){
+
+let thead=document.querySelector("#placementTable thead");
+
+let tbody=document.querySelector("#placementTable tbody");
+
+thead.innerHTML="";
+tbody.innerHTML="";
+
+if(data.length===0){
+
+tbody.innerHTML="<tr><td colspan='20'>No Records Found</td></tr>";
+
+return;
+
+}
+
+let headers=Object.keys(data[0]);
+
+let tr=document.createElement("tr");
+
+headers.forEach(h=>{
+
+let th=document.createElement("th");
+
+th.innerText=h;
+
+tr.appendChild(th);
+
+});
+
+thead.appendChild(tr);
+
+data.forEach(row=>{
+
+let tr=document.createElement("tr");
+
+headers.forEach(h=>{
+
+let td=document.createElement("td");
+
+let value=row[h]?row[h].toString().trim():"";
+
+if(value.includes("http")){
+
+let a=document.createElement("a");
+
+a.href=value;
+
+a.target="_blank";
+
+a.className="link-btn";
+
+if(h.toLowerCase().includes("intern")){
+
+a.innerText="📄 Internship Letter";
+
+}
+
+else if(h.toLowerCase().includes("offer")){
+
+a.innerText="📄 Offer Letter";
+
+}
+
+else{
+
+a.innerText="📄 View";
+
+}
+
+td.appendChild(a);
+
+}
+
+else{
+
+td.innerText=value;
+
+}
+
+tr.appendChild(td);
+
+});
+
+tbody.appendChild(tr);
+
+});
+
+}
+
+/* FILTERS */
+
+function populateFilters(data){
+
+let batches=[...new Set(data.map(d=>d["Batch"]))];
+
+let branches=[...new Set(data.map(d=>d["Branch"]))];
+
+let companies=[...new Set(data.map(d=>d["Company Placed"]))];
+
+let natures=[...new Set(data.map(d=>(d[natureKey]||"").trim()).filter(v=>v))];
+
+let interns=[...new Set(data.map(d=>(d[internKey]||"").trim()).filter(v=>v))];
+
+let genders=[...new Set(data.map(d=>(d["Gender"]||"").trim()).filter(v=>v))];
+
+fillSelect("batchFilter",batches,"All Batches");
+
+fillSelect("branchFilter",branches,"All Branches");
+
+fillSelect("companyFilter",companies,"All Companies");
+
+fillSelect("natureFilter",natures,"Nature of the Company");
+
+fillSelect("internFilter",interns,"Internship Type");
+
+fillSelect("genderFilter",genders,"All Genders");
+
+}
+
+/* FILL SELECT */
+
+function fillSelect(id,data,defaultText){
+
+let select=document.getElementById(id);
+
+select.innerHTML=`<option value="">${defaultText}</option>`;
+
+data.sort().forEach(v=>{
+
+select.add(new Option(v,v));
+
+});
+
+}
+
+/* STATS */
+
+function updateStats(data){
+
+document.getElementById("totalOffers").innerText=data.length;
+
+let uniqueStudents=new Set();
+
+data.forEach(row=>{
+
+uniqueStudents.add(row["Roll Number"]);
+
+});
+
+document.getElementById("placedStudents").innerText=uniqueStudents.size;
+
+}
+
+/* APPLY FILTERS */
+
+function applyFilters(){
+
+let search=document.getElementById("search").value.toLowerCase();
+
+let batch=document.getElementById("batchFilter").value;
+
+let branch=document.getElementById("branchFilter").value;
+
+let company=document.getElementById("companyFilter").value;
+
+let nature=document.getElementById("natureFilter").value;
+
+let intern=document.getElementById("internFilter").value;
+
+let gender=document.getElementById("genderFilter").value;
+
+let filtered=allData.filter(row=>{
+
+let text=JSON.stringify(row).toLowerCase();
+
+return text.includes(search) &&
+
+(batch=="" || row["Batch"]==batch) &&
+
+(branch=="" || row["Branch"]==branch) &&
+
+(company=="" || row["Company Placed"]==company) &&
+
+(nature=="" || (row[natureKey]||"").trim()==nature) &&
+
+(intern=="" || (row[internKey]||"").trim()==intern) &&
+
+(gender=="" || (row["Gender"]||"").trim()==gender);
+
+});
+
+buildTable(filtered);
+
+updateStats(filtered);
+
+}
+
+/* EVENTS */
+
+document.getElementById("search").addEventListener("keyup",applyFilters);
+
+document.getElementById("batchFilter").addEventListener("change",applyFilters);
+
+document.getElementById("branchFilter").addEventListener("change",applyFilters);
+
+document.getElementById("companyFilter").addEventListener("change",applyFilters);
+
+document.getElementById("natureFilter").addEventListener("change",applyFilters);
+
+document.getElementById("internFilter").addEventListener("change",applyFilters);
+
+document.getElementById("genderFilter").addEventListener("change",applyFilters);
+
+</script>
 
 </body>
 </html>
