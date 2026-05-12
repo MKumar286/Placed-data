@@ -821,6 +821,46 @@ genderSelect.add(new Option(v,v))
 
 }
 
+function updateCompanyFilter(filteredData){
+
+let companySelect =
+document.getElementById("companyFilter");
+
+/* CURRENT SELECTION */
+
+let currentValue = companySelect.value;
+
+/* UNIQUE COMPANIES */
+
+let companies = [
+...new Set(
+filteredData
+.map(d => d["Company Placed"])
+.filter(Boolean)
+)
+];
+
+/* RESET */
+
+companySelect.innerHTML =
+'<option value="">All Companies</option>';
+
+/* ADD FILTERED OPTIONS */
+
+companies.sort().forEach(v =>
+companySelect.add(new Option(v,v))
+);
+
+/* RESTORE VALUE IF EXISTS */
+
+if(companies.includes(currentValue)){
+
+companySelect.value = currentValue;
+
+}
+
+}
+
 /* UPDATE STATS */
 
 function updateStats(data){
@@ -884,6 +924,8 @@ return text.includes(search)
 
 });
 
+updateCompanyFilter(filtered);
+  
 buildTable(filtered);
 
 updateStats(filtered);
